@@ -5,18 +5,18 @@
   {{ if $cover }}
   {{ $image := .Resources.GetMatch $cover }}
   {{ if $image }}
-  <img class="mx-auto mb-8 w-full rounded-xl object-cover"
+  <img class="mx-auto mb-8 w-full md:w-[60%] rounded-xl object-cover"
        src="{{ $image.RelPermalink }}"
        alt="{{ .Title }}"
        title="{{ .Title }}">
   {{ else }}
-  <img class="mx-auto mb-8 w-full rounded-xl object-cover"
+  <img class="mx-auto mb-8 w-full md:w-[60%] rounded-xl object-cover"
        src="{{ $cover }}"
        alt="{{ .Title }}"
        title="{{ .Title }}">
   {{ end }}
   {{ else }}
-  <div class="mx-auto mb-8 h-64 w-full rounded-xl bg-gradient-to-br from-orange-500 to-orange-600"></div>
+  <div class="mx-auto mb-8 h-64 w-full md:w-[60%] rounded-xl bg-gradient-to-br from-orange-500 to-orange-600"></div>
   {{ end }}
 
   <!-- Заголовок -->
