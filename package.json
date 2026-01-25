@@ -1,0 +1,12 @@
+{
+  "name": "blog-poxek",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npx @tailwindcss/cli -i ./assets/css/main.css -o ./assets/css/output.css --watch",
+    "build": "npx @tailwindcss/cli -i ./assets/css/main.css -o ./assets/css/output.css --minify"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.0.0",
+    "@tailwindcss/typography": "^0.5.16"
+  }
+}

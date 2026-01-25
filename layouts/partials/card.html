@@ -1,0 +1,51 @@
+<article class="card group {{ if .first }}md:col-span-2{{ end }}">
+  <a href="{{ .page.Permalink }}" class="block">
+    {{ $cover := .page.Params.cover }}
+    {{ if $cover }}
+    <div class="overflow-hidden {{ if .first }}h-64 md:h-80{{ else }}h-48{{ end }}">
+      {{ $image := .page.Resources.GetMatch $cover }}
+      {{ if $image }}
+      <img src="{{ $image.RelPermalink }}"
+           alt="{{ .page.Title }}"
+           class="w-full h-full object-cover card-image"
+           loading="lazy">
+      {{ else }}
+      <img src="{{ $cover }}"
+           alt="{{ .page.Title }}"
+           class="w-full h-full object-cover card-image"
+           loading="lazy">
+      {{ end }}
+    </div>
+    {{ else }}
+    <div class="overflow-hidden {{ if .first }}h-64 md:h-80{{ else }}h-48{{ end }} bg-gradient-to-br from-primary-500 to-accent flex items-center justify-center">
+      <svg class="w-16 h-16 text-white/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+      </svg>
+    </div>
+    {{ end }}
+
+    <div class="card-content">
+      <h2 class="card-title {{ if .first }}text-xl md:text-2xl{{ end }}">
+        {{ .page.Title }}
+      </h2>
+
+      {{ with .page.Params.description }}
+      <p class="text-gray-600 dark:text-gray-400 text-sm mt-2 line-clamp-2">{{ . }}</p>
+      {{ end }}
+
+      <div class="flex items-center justify-between mt-3">
+        <time class="card-date" datetime="{{ .page.Date.Format "2006-01-02" }}">
+          {{ .page.Date.Format "2 January 2006" }}
+        </time>
+
+        {{ with .page.Params.tags }}
+        <div class="flex flex-wrap gap-2">
+          {{ range first 2 . }}
+          <span class="tag text-xs">{{ . }}</span>
+          {{ end }}
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </a>
+</article>

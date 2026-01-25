@@ -1,0 +1,25 @@
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+  <nav class="container mx-auto px-4 max-w-6xl">
+    <div class="flex items-center justify-between h-16">
+      <!-- Логотип -->
+      <a href="/" class="flex items-center space-x-2 text-xl font-bold text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+        <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+        <span>Похек</span>
+      </a>
+
+      <!-- Навигация -->
+      <div class="flex items-center space-x-6">
+        {{ range .Site.Menus.main }}
+        <a href="{{ .URL }}" class="nav-link font-medium {{ if $.IsMenuCurrent "main" . }}text-primary-600 dark:text-primary-400{{ end }}">
+          {{ .Name }}
+        </a>
+        {{ end }}
+
+        <!-- Переключатель темы -->
+        {{ partial "theme-toggle.html" . }}
+      </div>
+    </div>
+  </nav>
+</header>

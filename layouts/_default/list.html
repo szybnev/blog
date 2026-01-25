@@ -1,0 +1,53 @@
+{{ define "main" }}
+<div class="space-y-8">
+  {{ if .IsHome }}
+  <!-- Заголовок главной -->
+  <div class="text-center mb-12">
+    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+      {{ .Site.Title }}
+    </h1>
+    <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+      {{ .Site.Params.description }}
+    </p>
+  </div>
+  {{ else }}
+  <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">{{ .Title }}</h1>
+  {{ end }}
+
+  <!-- Сетка статей -->
+  {{ $pages := where .Site.RegularPages "Section" "post" }}
+  {{ if $pages }}
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {{ range $index, $page := $pages }}
+      {{ partial "card.html" (dict "page" $page "first" (eq $index 0)) }}
+    {{ end }}
+  </div>
+
+  <!-- Пагинация -->
+  {{ $paginator := .Paginate $pages }}
+  {{ if gt $paginator.TotalPages 1 }}
+  <nav class="flex justify-center mt-12 space-x-2">
+    {{ if $paginator.HasPrev }}
+    <a href="{{ $paginator.Prev.URL }}" class="btn bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700">
+      &larr; Назад
+    </a>
+    {{ end }}
+
+    <span class="btn bg-primary-600 text-white">
+      {{ $paginator.PageNumber }} / {{ $paginator.TotalPages }}
+    </span>
+
+    {{ if $paginator.HasNext }}
+    <a href="{{ $paginator.Next.URL }}" class="btn bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700">
+      Вперёд &rarr;
+    </a>
+    {{ end }}
+  </nav>
+  {{ end }}
+  {{ else }}
+  <div class="text-center py-12">
+    <p class="text-gray-500 dark:text-gray-400 text-lg">Статьи пока не опубликованы</p>
+  </div>
+  {{ end }}
+</div>
+{{ end }}

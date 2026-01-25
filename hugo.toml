@@ -1,0 +1,85 @@
+baseURL = 'https://blog.poxek.cc/'
+languageCode = 'ru-RU'
+title = 'Похек Блог'
+defaultContentLanguage = 'ru'
+
+# Отключаем стандартные RSS и sitemap для чистоты
+disableKinds = ['RSS']
+
+# Пагинация
+[pagination]
+  pagerSize = 12
+
+# Таксономии
+[taxonomies]
+  tag = 'tags'
+
+# Меню навигации
+[menus]
+  [[menus.main]]
+    name = 'Блог'
+    pageRef = '/'
+    weight = 10
+  [[menus.main]]
+    name = 'Телеграм'
+    pageRef = '/telegram'
+    weight = 20
+
+# Безопасность
+[security]
+  [security.exec]
+    allow = []
+    osEnv = ['(?i)^(PATH|PATHEXT|APPDATA|TMP|TEMP|TERM|HOME)$']
+  [security.funcs]
+    getenv = ['^HUGO_', '^CI$']
+  [security.http]
+    methods = []
+    urls = []
+
+# Markdown рендеринг
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = false
+  [markup.highlight]
+    style = 'monokai'
+    lineNos = true
+    lineNumbersInTable = true
+
+# Параметры сайта
+[params]
+  description = 'Блог о кибербезопасности, пентесте и хакинге'
+  author = 'Похек'
+
+  # Социальные сети
+  youtube = 'https://youtube.com/@poxek'
+  vk = 'https://vk.com/poxek'
+  rutube = 'https://rutube.ru/channel/poxek/'
+
+  # Telegram каналы
+  [[params.telegram]]
+    name = 'Похек'
+    handle = '@poxek'
+    url = 'https://t.me/poxek'
+    description = 'Основной канал о кибербезопасности'
+  [[params.telegram]]
+    name = 'Похек AI'
+    handle = '@poxek_ai'
+    url = 'https://t.me/poxek_ai'
+    description = 'AI и ML в информационной безопасности'
+  [[params.telegram]]
+    name = 'Похек Event'
+    handle = '@poxek_event'
+    url = 'https://t.me/poxek_event'
+    description = 'Мероприятия по кибербезопасности'
+  [[params.telegram]]
+    name = 'Похек Meme'
+    handle = '@poxek_meme'
+    url = 'https://t.me/poxek_meme'
+    description = 'Мемы про информационную безопасность'
+
+# Минификация выходных файлов
+[minify]
+  disableHTML = false
+  disableCSS = false
+  disableJS = false

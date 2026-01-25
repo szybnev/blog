@@ -1,0 +1,54 @@
+{{ define "main" }}
+<div class="max-w-4xl mx-auto">
+  <header class="text-center mb-12">
+    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+      Телеграм-каналы
+    </h1>
+    <p class="text-xl text-gray-600 dark:text-gray-400">
+      Подписывайтесь на наши каналы, чтобы быть в курсе последних новостей
+    </p>
+  </header>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {{ range .Site.Params.telegram }}
+    <a href="{{ .url }}" target="_blank" rel="noopener noreferrer"
+       class="block p-6 rounded-xl bg-white dark:bg-gray-800 shadow-md hover:shadow-xl transition-all duration-300 group border border-gray-200 dark:border-gray-700">
+      <div class="flex items-start space-x-4">
+        <div class="flex-shrink-0 w-14 h-14 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
+          <svg class="w-8 h-8 text-blue-500" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+          </svg>
+        </div>
+        <div class="flex-grow">
+          <h2 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+            {{ .name }}
+          </h2>
+          <p class="text-blue-500 font-medium mb-2">{{ .handle }}</p>
+          <p class="text-gray-600 dark:text-gray-400">{{ .description }}</p>
+        </div>
+        <div class="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+          <svg class="w-6 h-6 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </div>
+      </div>
+    </a>
+    {{ end }}
+  </div>
+
+  <!-- Призыв к действию -->
+  <div class="mt-12 text-center p-8 rounded-xl bg-gradient-to-r from-primary-500 to-accent text-white">
+    <h3 class="text-2xl font-bold mb-4">Присоединяйтесь к сообществу!</h3>
+    <p class="text-lg opacity-90 mb-6">
+      Более 100,000 специалистов по кибербезопасности уже с нами
+    </p>
+    <a href="https://t.me/poxek" target="_blank" rel="noopener noreferrer"
+       class="inline-flex items-center px-6 py-3 rounded-lg bg-white text-primary-600 font-semibold hover:bg-gray-100 transition-colors">
+      <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+      </svg>
+      Подписаться на Похек
+    </a>
+  </div>
+</div>
+{{ end }}

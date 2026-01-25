@@ -1,0 +1,28 @@
+{{ define "main" }}
+<div class="space-y-8">
+  <header class="mb-8">
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
+      {{ if eq .Data.Singular "tag" }}
+      #{{ .Title }}
+      {{ else }}
+      {{ .Title }}
+      {{ end }}
+    </h1>
+    <p class="text-gray-500 dark:text-gray-400">
+      {{ len .Pages }} {{ if eq (len .Pages) 1 }}статья{{ else }}статей{{ end }}
+    </p>
+  </header>
+
+  {{ if .Pages }}
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {{ range $index, $page := .Pages }}
+      {{ partial "card.html" (dict "page" $page "first" (eq $index 0)) }}
+    {{ end }}
+  </div>
+  {{ else }}
+  <div class="text-center py-12">
+    <p class="text-gray-500 dark:text-gray-400 text-lg">Статьи не найдены</p>
+  </div>
+  {{ end }}
+</div>
+{{ end }}
