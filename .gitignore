@@ -20,3 +20,7 @@ Thumbs.db
 # Claude
 .claude/
 original-blog-frontend/
+
+# Strapi export
+strapi-export/
+*.tar.gz
