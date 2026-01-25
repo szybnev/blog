@@ -1,6 +1,6 @@
 <article class="card group {{ if .first }}md:col-span-2{{ end }}">
   <a href="{{ .page.Permalink }}" class="block">
-    {{ $cover := .page.Params.image | default .page.Params.cover }}
+    {{ $cover := or .page.Params.image .page.Params.cover }}
     {{ if $cover }}
     <div class="overflow-hidden {{ if .first }}h-64 md:h-80{{ else }}h-48{{ end }}">
       {{ $image := .page.Resources.GetMatch $cover }}

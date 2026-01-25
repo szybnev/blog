@@ -1,7 +1,7 @@
 {{ define "main" }}
 <div class="container mx-auto mt-8 px-4">
   <!-- Обложка -->
-  {{ $cover := .Params.image | default .Params.cover }}
+  {{ $cover := or .Params.image .Params.cover }}
   {{ if $cover }}
   {{ $image := .Resources.GetMatch $cover }}
   {{ if $image }}
