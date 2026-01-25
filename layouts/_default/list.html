@@ -9,7 +9,7 @@
     <div class="relative md:col-span-2">
       <a href="{{ .Permalink }}" class="block h-full">
         <div class="group bg-card overflow-hidden rounded-xl shadow-md transition-all hover:shadow-lg">
-          {{ $cover := .Params.cover }}
+          {{ $cover := or .Params.image .Params.cover }}
           {{ if $cover }}
           {{ $image := .Resources.GetMatch $cover }}
           <div class="relative aspect-video w-full overflow-hidden">
@@ -49,7 +49,7 @@
       {{ range first 2 (after 1 $pages) }}
       <a href="{{ .Permalink }}" class="block flex-1">
         <div class="group bg-card h-full overflow-hidden rounded-xl shadow-md transition-all hover:shadow-lg">
-          {{ $cover := .Params.cover }}
+          {{ $cover := or .Params.image .Params.cover }}
           {{ if $cover }}
           {{ $image := .Resources.GetMatch $cover }}
           <div class="relative aspect-video w-full overflow-hidden">
@@ -85,7 +85,7 @@
     {{ range after 3 $pages }}
     <a href="{{ .Permalink }}" class="block">
       <div class="group bg-card h-full overflow-hidden rounded-xl shadow-md transition-all hover:shadow-lg">
-        {{ $cover := .Params.cover }}
+        {{ $cover := or .Params.image .Params.cover }}
         {{ if $cover }}
         {{ $image := .Resources.GetMatch $cover }}
         <div class="relative aspect-video w-full overflow-hidden">
