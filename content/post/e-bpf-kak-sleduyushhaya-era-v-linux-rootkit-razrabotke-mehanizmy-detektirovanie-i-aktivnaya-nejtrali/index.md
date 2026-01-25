@@ -1,6 +1,6 @@
 ---
 title: "eBPF как следующая эра в Linux Rootkit-разработке: механизмы, детектирование и активная нейтрализация"
-date: 2026-01-23
+date: 2026-05-03
 draft: false
 description: "eBPF как следующая эра в Linux Rootkit-разработке: механизмы, детектирование и активная нейтрализация"
 image: "/cdn/blog-cdn/large_6877c420b128d8fdaaa4e99b_blog_e_BPF_Offensive_Capabilities_0bccaaa366.png"
