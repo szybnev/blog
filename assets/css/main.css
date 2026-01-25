@@ -4,7 +4,7 @@
 @source "../../layouts/**/*.html";
 @source "../../content/**/*.md";
 
-@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:is(.dark *));
 
 /* Шрифт Jost */
 @font-face {
@@ -41,102 +41,92 @@
 
 @theme {
   --font-family-sans: 'Jost', system-ui, sans-serif;
-
-  --color-primary-50: #f0f9ff;
-  --color-primary-100: #e0f2fe;
-  --color-primary-200: #bae6fd;
-  --color-primary-300: #7dd3fc;
-  --color-primary-400: #38bdf8;
-  --color-primary-500: #0ea5e9;
-  --color-primary-600: #0284c7;
-  --color-primary-700: #0369a1;
-  --color-primary-800: #075985;
-  --color-primary-900: #0c4a6e;
-
-  --color-accent: #6366f1;
-  --color-accent-hover: #4f46e5;
+  --radius: 0.5rem;
 }
 
-/* Базовые стили */
+/* Цветовые переменные из оригинала */
 @layer base {
-  html {
-    scroll-behavior: smooth;
+  :root {
+    --background: #fafafa;
+    --foreground: #09090b;
+    --card: #f4f4f5;
+    --card-foreground: #09090b;
+    --primary: #f97316;
+    --primary-foreground: #fafafa;
+    --secondary: #f4f4f7;
+    --secondary-foreground: #18181b;
+    --muted: #f4f4f7;
+    --muted-foreground: #717179;
+    --border: #e4e4e7;
+  }
+
+  .dark {
+    --background: #09090b;
+    --foreground: #fafafa;
+    --card: #18181b;
+    --card-foreground: #fafafa;
+    --primary: #f97316;
+    --primary-foreground: #18181b;
+    --secondary: #232326;
+    --secondary-foreground: #fafafa;
+    --muted: #27272a;
+    --muted-foreground: #a1a1aa;
+    --border: #232326;
+  }
+
+  * {
+    border-color: var(--border);
   }
 
   body {
     font-family: var(--font-family-sans);
-    @apply bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100;
-    @apply transition-colors duration-200;
-  }
-}
-
-/* Компоненты */
-@layer components {
-  /* Карточка статьи */
-  .card {
-    @apply bg-white dark:bg-gray-800 rounded-xl overflow-hidden;
-    @apply shadow-md hover:shadow-xl transition-shadow duration-300;
-  }
-
-  .card-image {
-    @apply w-full h-48 object-cover;
-    @apply transition-transform duration-300 group-hover:scale-105;
-  }
-
-  .card-content {
-    @apply p-4;
-  }
-
-  .card-title {
-    @apply font-semibold text-lg line-clamp-2;
-    @apply text-gray-900 dark:text-white;
-    @apply group-hover:text-primary-600 dark:group-hover:text-primary-400;
-    @apply transition-colors duration-200;
-  }
-
-  .card-date {
-    @apply text-sm text-gray-500 dark:text-gray-400 mt-2;
-  }
-
-  /* Теги */
-  .tag {
-    @apply inline-block px-3 py-1 text-sm rounded-full;
-    @apply bg-gray-100 dark:bg-gray-700;
-    @apply text-gray-700 dark:text-gray-300;
-    @apply hover:bg-primary-100 dark:hover:bg-primary-900;
-    @apply hover:text-primary-700 dark:hover:text-primary-300;
-    @apply transition-colors duration-200;
-  }
-
-  /* Кнопки */
-  .btn {
-    @apply inline-flex items-center justify-center px-4 py-2 rounded-lg;
-    @apply font-medium transition-all duration-200;
-  }
-
-  .btn-primary {
-    @apply bg-primary-600 text-white;
-    @apply hover:bg-primary-700;
-  }
-
-  /* Навигация */
-  .nav-link {
-    @apply text-gray-700 dark:text-gray-300;
-    @apply hover:text-primary-600 dark:hover:text-primary-400;
-    @apply transition-colors duration-200;
-  }
-
-  /* Переключатель темы */
-  .theme-toggle {
-    @apply p-2 rounded-lg;
-    @apply text-gray-500 dark:text-gray-400;
-    @apply hover:bg-gray-100 dark:hover:bg-gray-800;
-    @apply transition-colors duration-200;
+    background-color: var(--background);
+    color: var(--foreground);
   }
 }
 
 /* Утилиты */
 @layer utilities {
+  .bg-background {
+    background-color: var(--background);
+  }
+  .bg-card {
+    background-color: var(--card);
+  }
+  .bg-card\/80 {
+    background-color: color-mix(in srgb, var(--card) 80%, transparent);
+  }
+  .bg-card\/70 {
+    background-color: color-mix(in srgb, var(--card) 70%, transparent);
+  }
+  .bg-primary {
+    background-color: var(--primary);
+  }
+  .bg-primary\/90 {
+    background-color: color-mix(in srgb, var(--primary) 90%, transparent);
+  }
+  .text-foreground {
+    color: var(--foreground);
+  }
+  .text-muted-foreground {
+    color: var(--muted-foreground);
+  }
+  .text-primary {
+    color: var(--primary);
+  }
+  .border-border {
+    border-color: var(--border);
+  }
+  .border-border\/40 {
+    border-color: color-mix(in srgb, var(--border) 40%, transparent);
+  }
+  .bg-secondary {
+    background-color: var(--secondary);
+  }
+  .hover\:bg-secondary:hover {
+    background-color: var(--secondary);
+  }
+
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;

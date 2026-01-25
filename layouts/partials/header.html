@@ -1,25 +1,79 @@
-<header class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
-  <nav class="container mx-auto px-4 max-w-6xl">
-    <div class="flex items-center justify-between h-16">
-      <!-- Логотип -->
-      <a href="/" class="flex items-center space-x-2 text-xl font-bold text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-        <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-        </svg>
-        <span>Похек</span>
+<div class="fixed top-0 right-0 left-0 z-50 flex justify-center p-4">
+  <nav class="bg-card/80 dark:bg-card/70 flex w-3/4 items-center justify-between rounded-full px-6 py-3 backdrop-blur-md transition-all md:w-1/2">
+    <!-- Логотип -->
+    <div class="flex items-center">
+      <a href="/" class="flex items-center gap-2">
+        <img src="https://cdn.poxek.cc/academy-icon.avif"
+             alt="Логотип"
+             class="size-10"
+             width="40"
+             height="40">
+      </a>
+    </div>
+
+    <!-- Навигация (десктоп) -->
+    <div class="hidden items-center justify-center gap-6 md:flex">
+      <a href="/" class="hover:text-primary text-sm font-medium transition-colors">
+        Блог
+      </a>
+    </div>
+
+    <!-- Правая часть -->
+    <div class="flex items-center gap-4">
+      <!-- Переключатель темы -->
+      {{ partial "theme-toggle.html" . }}
+
+      <!-- Кнопка Telegram -->
+      <a href="https://t.me/poxek"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="bg-primary hover:bg-primary/90 hidden items-center rounded-full px-4 py-2 text-sm font-medium text-zinc-100 transition-all md:flex">
+        Канал Похек
       </a>
 
-      <!-- Навигация -->
-      <div class="flex items-center space-x-6">
-        {{ range .Site.Menus.main }}
-        <a href="{{ .URL }}" class="nav-link font-medium {{ if $.IsMenuCurrent "main" . }}text-primary-600 dark:text-primary-400{{ end }}">
-          {{ .Name }}
-        </a>
-        {{ end }}
-
-        <!-- Переключатель темы -->
-        {{ partial "theme-toggle.html" . }}
-      </div>
+      <!-- Мобильное меню (бургер) -->
+      <button onclick="toggleMobileMenu()"
+              class="bg-background flex size-10 items-center justify-center rounded-md p-2 md:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
     </div>
   </nav>
-</header>
+</div>
+
+<!-- Мобильное меню -->
+<div id="mobile-menu" class="fixed inset-0 z-40 flex-col items-center justify-between bg-background/90 dark:bg-card/90 backdrop-blur-md hidden">
+  <div class="flex flex-1 flex-col items-center justify-center gap-8 p-4 text-center">
+    <a href="/" class="hover:text-primary text-xl font-medium transition-colors" onclick="toggleMobileMenu()">
+      Блог
+    </a>
+    <a href="https://t.me/poxek"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="bg-primary hover:bg-primary/90 mt-4 rounded-full px-6 py-3 text-lg font-medium text-zinc-100 transition-all">
+      Канал Похек
+    </a>
+  </div>
+
+  <div class="p-4 text-center border-t w-full">
+    <button onclick="toggleMobileMenu()" class="text-muted-foreground px-4 py-2">
+      Закрыть
+    </button>
+  </div>
+</div>
+
+<script>
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  if (menu.classList.contains('hidden')) {
+    menu.classList.remove('hidden');
+    menu.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  } else {
+    menu.classList.add('hidden');
+    menu.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+}
+</script>

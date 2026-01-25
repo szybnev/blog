@@ -1,84 +1,39 @@
 {{ define "main" }}
-<article class="max-w-4xl mx-auto">
-  <!-- Шапка статьи -->
-  <header class="mb-8">
-    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-      {{ .Title }}
-    </h1>
-
-    <div class="flex flex-wrap items-center gap-4 text-gray-500 dark:text-gray-400">
-      <time datetime="{{ .Date.Format "2006-01-02" }}" class="flex items-center">
-        <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-        </svg>
-        {{ .Date.Format "2 January 2006" }}
-      </time>
-
-      {{ if .Params.tags }}
-      <div class="flex flex-wrap gap-2">
-        {{ range .Params.tags }}
-        <a href="{{ "tags/" | relURL }}{{ . | urlize }}/" class="tag">
-          #{{ . }}
-        </a>
-        {{ end }}
-      </div>
-      {{ end }}
-    </div>
-  </header>
-
+<div class="container mx-auto mt-8 px-4">
   <!-- Обложка -->
-  {{ with .Params.cover }}
-  {{ $image := $.Resources.GetMatch . }}
-  <div class="mb-8 rounded-xl overflow-hidden">
-    {{ if $image }}
-    <img src="{{ $image.RelPermalink }}"
-         alt="{{ $.Title }}"
-         class="w-full h-auto">
-    {{ else }}
-    <img src="{{ . }}"
-         alt="{{ $.Title }}"
-         class="w-full h-auto">
-    {{ end }}
-  </div>
+  {{ $cover := .Params.cover }}
+  {{ if $cover }}
+  {{ $image := .Resources.GetMatch $cover }}
+  {{ if $image }}
+  <img class="mx-auto mb-8 w-full rounded-xl object-cover"
+       src="{{ $image.RelPermalink }}"
+       alt="{{ .Title }}"
+       title="{{ .Title }}">
+  {{ else }}
+  <img class="mx-auto mb-8 w-full rounded-xl object-cover"
+       src="{{ $cover }}"
+       alt="{{ .Title }}"
+       title="{{ .Title }}">
+  {{ end }}
+  {{ else }}
+  <div class="mx-auto mb-8 h-64 w-full rounded-xl bg-gradient-to-br from-orange-500 to-orange-600"></div>
   {{ end }}
 
-  <!-- Контент статьи -->
-  <div class="prose prose-lg dark:prose-invert max-w-none
-              prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white
-              prose-a:text-primary-600 dark:prose-a:text-primary-400 prose-a:no-underline hover:prose-a:underline
-              prose-code:text-pink-600 dark:prose-code:text-pink-400 prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded
-              prose-pre:bg-gray-900 prose-pre:text-gray-100
-              prose-img:rounded-xl">
+  <!-- Заголовок -->
+  <h1 class="mb-2 text-center text-4xl font-bold">{{ .Title }}</h1>
+
+  <!-- Дата -->
+  <p class="mb-8 text-center text-sm text-zinc-500 dark:text-zinc-400">
+    Дата публикации: {{ .Date.Format "2 January 2006" }}
+  </p>
+
+  <!-- Контент -->
+  <article class="prose prose-lg dark:prose-invert mx-auto max-w-4xl
+                  prose-headings:font-bold
+                  prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+                  prose-code:before:content-[''] prose-code:after:content-['']
+                  prose-img:rounded-lg">
     {{ .Content }}
-  </div>
-
-  <!-- Навигация между статьями -->
-  <nav class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-    <div class="flex flex-col md:flex-row justify-between gap-4">
-      {{ with .PrevInSection }}
-      <a href="{{ .Permalink }}" class="group flex items-center p-4 rounded-xl bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-        <svg class="w-5 h-5 mr-3 text-gray-400 group-hover:text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-        </svg>
-        <div>
-          <span class="text-sm text-gray-500 dark:text-gray-400">Предыдущая</span>
-          <p class="font-medium text-gray-900 dark:text-white line-clamp-1">{{ .Title }}</p>
-        </div>
-      </a>
-      {{ end }}
-
-      {{ with .NextInSection }}
-      <a href="{{ .Permalink }}" class="group flex items-center justify-end p-4 rounded-xl bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors md:ml-auto">
-        <div class="text-right">
-          <span class="text-sm text-gray-500 dark:text-gray-400">Следующая</span>
-          <p class="font-medium text-gray-900 dark:text-white line-clamp-1">{{ .Title }}</p>
-        </div>
-        <svg class="w-5 h-5 ml-3 text-gray-400 group-hover:text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-        </svg>
-      </a>
-      {{ end }}
-    </div>
-  </nav>
-</article>
+  </article>
+</div>
 {{ end }}
