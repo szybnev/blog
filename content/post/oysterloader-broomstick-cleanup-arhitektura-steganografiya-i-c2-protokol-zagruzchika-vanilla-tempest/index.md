@@ -3,7 +3,7 @@ title: "OysterLoader (Broomstick/CleanUp): архитектура, стеган�
 date: 2026-02-15
 draft: false
 description: "Как устроен OysterLoader — загрузчик Rhysida ransomware и Vidar: обфускация TextShell, RC4-стеганография в ICO, динамический Base64, IOC и MITRE ATT&CK"
-image: "/cdn/blog-cdn/oysterloader-header.svg"
+image: "/cdn/blog-cdn/oysterloader-header.png"
 ---
 
 ## 1. Введение
