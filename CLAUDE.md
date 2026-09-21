@@ -35,7 +35,7 @@ layouts/
 │   ├── baseof.html    # Базовый layout с подключением CSS/шрифтов
 │   ├── list.html      # Главная + списки постов
 │   └── single.html    # Отдельный пост
-├── page/              # Кастомные страницы (telegram.md)
+├── telegram.html      # Страница каналов (telegram.md)
 └── partials/
     ├── header.html    # Навигация
     ├── footer.html    # Подвал с соцсетями

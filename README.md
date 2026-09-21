@@ -12,9 +12,11 @@
 
 ## Разработка
 
+Требуются Node.js 24 LTS и Hugo Extended 0.166.0 (бинарник `./hugo`).
+
 ```bash
 # Установка зависимостей
-npm install
+npm ci
 
 # Запуск (два терминала)
 npm run dev           # Tailwind watch
@@ -27,6 +29,7 @@ npm run dev           # Tailwind watch
 npm run build
 cp assets/css/output.css static/css/
 ./hugo --gc --minify
+python3 scripts/check_build.py
 ```
 
 Результат в папке `public/`.
