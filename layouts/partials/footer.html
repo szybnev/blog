@@ -4,7 +4,7 @@
     <div class="hidden md:flex flex-row justify-between items-center">
       <div class="text-sm text-muted-foreground">
         &copy; {{ now.Year }} Блог Похека. Все права защищены.
-        <a href="/index.xml" class="ml-2 underline" title="RSS-лента блога">RSS</a>
+        <a href="{{ "index.xml" | relURL }}" class="ml-2 underline" title="RSS-лента блога">RSS</a>
       </div>
 
       <div class="flex items-center gap-4">
@@ -35,7 +35,7 @@
     <div class="md:hidden flex flex-col gap-6">
       <div class="text-sm text-muted-foreground text-center">
         &copy; {{ now.Year }} Блог Похека. Все права защищены.
-        <a href="/index.xml" class="mt-2 inline-block underline" title="RSS-лента блога">RSS</a>
+        <a href="{{ "index.xml" | relURL }}" class="mt-2 inline-block underline" title="RSS-лента блога">RSS</a>
       </div>
 
       <div class="flex items-center justify-center gap-4">

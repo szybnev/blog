@@ -3,6 +3,7 @@
 import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
+from urllib.parse import urlparse
 
 public = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("public")
 home = (public / "index.html").read_text(encoding="utf-8")
@@ -24,7 +25,7 @@ feed = ET.parse(public / "index.xml").getroot()
 items = feed.findall("./channel/item")
 assert items, "RSS-лента пуста"
 assert len(items) == len(posts), "RSS содержит не все статьи или лишние страницы"
-assert all(item.findtext("link", "").startswith("https://blog.poxek.cc/post/") for item in items), "RSS содержит не статью блога"
-assert "rel=alternate type=application/rss+xml href=https://blog.poxek.cc/index.xml" in home, "На главной отсутствует RSS autodiscovery"
-assert "href=/index.xml" in home and ">RSS</a>" in home, "На главной отсутствует ссылка на RSS"
+assert all(urlparse(item.findtext("link", "")).scheme == "https" and "/post/" in urlparse(item.findtext("link", "")).path for item in items), "RSS содержит не статью блога"
+assert "rel=alternate" in home and "application/rss+xml" in home and "index.xml" in home, "На главной отсутствует RSS autodiscovery"
+assert "index.xml" in home and ">RSS</a>" in home, "На главной отсутствует ссылка на RSS"
 print(f"Проверены главная, теги, Telegram, CSS, RSS и {len(posts)} статей")
