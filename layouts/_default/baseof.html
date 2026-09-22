@@ -19,6 +19,9 @@
 
   <link rel="icon" href="/poxek_logo-wb.avif">
   <link rel="canonical" href="{{ .Permalink }}">
+  {{ with .Site.Home.OutputFormats.Get "rss" }}
+  <link rel="alternate" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ $.Site.Title }}">
+  {{ end }}
 
   <!-- Preload шрифтов -->
   <link rel="preload" href="/fonts/Jost/Jost-Regular.woff2" as="font" type="font/woff2" crossorigin>

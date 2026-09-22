@@ -3,8 +3,13 @@ locale = 'ru-RU'
 title = 'Похек Блог'
 defaultContentLanguage = 'ru'
 
-# Отключаем стандартные RSS и sitemap для чистоты
-disableKinds = ['RSS']
+# RSS только для главной страницы; шаблон включает статьи из раздела post.
+[outputs]
+home = ['html', 'rss']
+page = ['html']
+section = ['html']
+taxonomy = ['html']
+term = ['html']
 
 # Пагинация
 [pagination]
